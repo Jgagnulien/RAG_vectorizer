@@ -6,13 +6,7 @@ import joblib
 import scipy.sparse
 import os
 from datetime import datetime
-
-import os
-import json
 import hashlib
-import joblib
-import scipy.sparse
-from sklearn.feature_extraction.text import CountVectorizer
 
 def compute_file_hash(filepath):
     """Compute SHA256 hash of a file."""
