@@ -118,4 +118,10 @@ def search(query, vectorizer, X, docs_path, top_k=5, save_path="search_results.j
         json.dump(output_data, f, indent=2, ensure_ascii=False)
 
     print(f"💾 Search results saved to {out_file}")
+
+     # ✅ Count words in output file
+    total_words = sum(len(str(value).split()) for item in output_data for value in item.values())
+
+    print(f"📝 Total word count in output: {total_words}")
+
     return results

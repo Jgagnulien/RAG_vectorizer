@@ -5,3 +5,4 @@ lib/
 Include/
 __pycache__/
 test.py
+output/
