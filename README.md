@@ -123,14 +123,6 @@ The saved search result file will look like:
 
 ---
 
-## 🛠️ TODOs / Improvements
-
-- Switch to `TfidfVectorizer` for better ranking
-- Add command-line interface (CLI)
-- Support more advanced models (e.g., embeddings via `sentence-transformers`)
-
----
-
 ## 📝 License
 
 MIT License. Feel free to use, modify, and contribute.
