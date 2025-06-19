@@ -1,10 +1,12 @@
 # main.py
 from utils.to_json import generate_json_from_excels
 from utils.preprocess import vectorize_documents, search
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 
-# Paths
-folder_path = "C:/Users/jugagn/OneDrive - SAS/Documents/vscode/agentic_ai/.venv/data/rules_active"
+folder_path = os.getenv("folder_path")
 
 def main(user_prompt, folder_path=folder_path, vector_json="docs_vector.json", metadata_json="docs_metadata.json", top_k=3):
 
