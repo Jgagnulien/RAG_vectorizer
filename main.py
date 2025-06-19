@@ -1,7 +1,6 @@
 import vectorize_documents
 import rule_suggestion
 
-
 def main(user_prompt):
     RAG = vectorize_documents.main(user_prompt)
 
