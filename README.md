@@ -32,7 +32,7 @@ This project is a GUI-based interface for an **LLM-powered rule suggestion syste
 ```plaintext
 ├── vectorize_documents.py     # Handles vector search logic (RAG)
 ├── rule_suggestion.py         # Handles interaction with the LLM
-├── gui_rule_suggester.py      # Main GUI entry point
+├── main.py      # Main GUI entry point
 ├── README.md
 
 ---
