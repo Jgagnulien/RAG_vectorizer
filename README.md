@@ -1,125 +1,39 @@
+# 🧠 RAG-Enabled Rule Suggestion Engine
 
-# 📚 Semantic Search Engine for JSON Documents
+This project is a GUI-based interface for an **LLM-powered rule suggestion system**, enhanced with **Retrieval-Augmented Generation (RAG)**. It helps generate fraud detection rules based on past rule data and current user prompts.
 
-This project provides a simple and efficient way to **vectorize text documents**, **cache results**, and perform **semantic search** using the Bag-of-Words model and cosine similarity. It is ideal for lightweight search applications across rulebooks, policies, or any structured JSON content.
+## 🚀 Features
 
-## 🔧 Features
-
-- Text vectorization using `CountVectorizer` (Bag-of-Words)
-- Automatic caching based on file hash to avoid re-processing
-- Cosine similarity search across document vectors
-- Timestamped export of search results
-- Clean and modular Python code
+- 🧾 Takes a natural language prompt from the user (e.g., "Are there new fraud trends I can investigate?")
+- 🔍 Uses RAG to retrieve relevant rules from a vectorized document base
+- 🤖 Passes enriched context to a local or remote LLM to suggest new rules
+- 🖥️ Simple desktop GUI using `tkinter`
 
 ---
 
-## 📁 Project Structure
+## 🛠️ How It Works
 
-```
-.
-├── utils/
-│   └── preprocess.py       # Core logic for vectorization and search
-├── data/
-│   └── rules.json          # Example input file with text documents
-├── cache/                  # Cached vectorizer and matrix files
-├── results/                # Saved search results
-└── README.md
-```
+1. **Input Prompt**  
+   User enters a question or idea related to fraud detection.
 
----
+2. **RAG Phase**  
+   `vectorize_documents.main(user_prompt)` retrieves relevant historical rules or context.
 
-## 🧩 Requirements
+3. **LLM Phase**  
+   The enriched prompt is passed to `rule_suggestion.main(...)`, which returns a new rule suggestion.
 
-Install the required Python packages using:
-
-```bash
-pip install scikit-learn joblib
-```
+4. **Output Display**  
+   The generated rule is shown in a scrollable text window.
 
 ---
 
-## 📄 Input Format
+## 🧩 Project Structure
 
-The input file (`rules.json`, for example) must be a **JSON list of documents**, each with at least a `"text"` field:
-
-```json
-[
-  {
-    "id": 1,
-    "title": "Rule A",
-    "text": "This rule applies to financial operations."
-  },
-  {
-    "id": 2,
-    "title": "Rule B",
-    "text": "Applicable to all investment accounts."
-  }
-]
-```
-
----
-
-## 🚀 Usage
-
-### 1. Vectorize Documents
-
-```python
-from utils.preprocess import vectorize_documents
-
-X, vectorizer = vectorize_documents("data/rules.json")
-```
-
-This will:
-- Vectorize the `text` field in your JSON file
-- Cache the vectorizer and matrix in `cache/`
-- Automatically re-use cache if the file hasn't changed
-
----
-
-### 2. Run a Search
-
-```python
-from utils.preprocess import search
-
-results = search(
-    query="investment policy",
-    vectorizer=vectorizer,
-    X=X,
-    docs_path="data/rules.json"
-)
-```
-
-This will:
-- Compute similarity between your query and all documents
-- Return the top 5 matches
-- Save a timestamped `.json` file with the results
-
----
-
-## 💾 Output Format
-
-The saved search result file will look like:
-
-```json
-[
-  {
-    "query": "investment policy"
-  },
-  {
-    "id": 2,
-    "title": "Rule B",
-    "text": "Applicable to all investment accounts.",
-    "score": 0.4898
-  }
-]
-```
-
----
-
-## 📌 Notes
-
-- You can adjust the number of returned results via the `top_k` parameter.
-- Change the `cache_dir` and `save_path` if needed for more flexible I/O management.
+```plaintext
+├── vectorize_documents.py     # Handles vector search logic (RAG)
+├── rule_suggestion.py         # Handles interaction with the LLM
+├── gui_rule_suggester.py      # Main GUI entry point
+├── README.md
 
 ---
 

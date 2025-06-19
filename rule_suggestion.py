@@ -1,11 +1,10 @@
 from llama_cpp import Llama
 
 def main(user_prompt):
-
+    """input: llm user_prompt system_prompt"""
     llm = Llama(model_path="C:/Users/jugagn/OneDrive - SAS/Documents/LLM/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf", 
                 n_ctx=1200)
-    """input: llm user_prompt system_prompt"""
-
+    
     system_prompt = """
     You will be asked for rule suggestions by a fraud decisioning expert working for a bank that needs to improve the existing rules for payments fraud detection, 
     use the provided rules to inspire yourself to create a single new rule.
