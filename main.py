@@ -1,26 +1,15 @@
-# main.py
-from utils.to_json import generate_json_from_excels
-from utils.preprocess import vectorize_documents, search
-import os
+import vectorize_documents
+import rule_suggestion
 
-# Paths
-folder_path = "C:/Users/jugagn/OneDrive - SAS/Documents/vscode/agentic_ai/.venv/data/rules_active"
-vector_json = "docs_vector.json"
-metadata_json = "docs_metadata.json"
+# Variables :
+user_prompt = "Are there new fraud trends I can investigate and create rules for ?"
 
-# Step 1: Generate JSON if needed
-generate_json_from_excels(folder_path, vector_json, metadata_json)
 
-# Step 2: Load/cached vectorization
-X, vectorizer = vectorize_documents(vector_json)
+def main(user_prompt):
+    RAG = vectorize_documents()
 
-# Step 3: Query
-query = input("Query : ")
-top_k = 5
-results = search(query, vectorizer, X, vector_json, top_k)
+    user_prompt = user_prompt + ", ".join(str(x) for x in RAG)
 
-# Step 4: Output
-print(f"/n📄 Top {top_k} results:")
-for i, res in enumerate(results, 1):
-    print(f"/n#{i} (score: {res['score']:.4f})")
-    print(f"Key: {res['key']}")
+    rule = rule_suggestion(user_prompt)
+
+    return rule
