@@ -17,7 +17,7 @@ def main(user_prompt, folder_path=folder_path, vector_json="docs_vector.json", m
     results = search(user_prompt, vectorizer, X, vector_json, top_k)
 
     # Step 4: Output
-    print(f"/n📄 Top {top_k} results:")
+    print(f"/n Top {top_k} results:")
     for i, res in enumerate(results, 1):
         print(f"/n#{i} (score: {res['score']:.4f})")
         print(f"Key: {res['key']}")
