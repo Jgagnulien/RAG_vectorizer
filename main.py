@@ -1,5 +1,7 @@
 import vectorize_documents
+import orchestrator
 import rule_suggestion
+import scrapper
 
 def main(user_prompt):
     RAG = vectorize_documents.main(user_prompt)
