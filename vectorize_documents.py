@@ -4,11 +4,8 @@ from utils.preprocess import vectorize_documents, search
 
 # Paths
 folder_path = "C:/Users/jugagn/OneDrive - SAS/Documents/vscode/agentic_ai/.venv/data/rules_active"
-vector_json = "docs_vector.json"
-metadata_json = "docs_metadata.json"
-top_k = 6
 
-def main(user_prompt, folder_path, vector_json="docs_vector.json", metadata_json="docs_metadata.json", top_k=6):
+def main(user_prompt, folder_path=folder_path, vector_json="docs_vector.json", metadata_json="docs_metadata.json", top_k=3):
 
     # Step 1: Generate JSON if needed
     generate_json_from_excels(folder_path, vector_json, metadata_json)
